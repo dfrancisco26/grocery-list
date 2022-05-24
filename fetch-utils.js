@@ -60,12 +60,24 @@ export async function fetchListItems() {
 
 export function renderItem(item) {
     const div = document.createElement('div');
-    div.textContent = `${item.qty} ${item.name}`;
+    div.textContent = `${item.qty} ${item.item}`;
 
     if (item.purchased) {
         div.classList.add('complete');
     }
     return div;
+}
+
+export async function togglePurchased(item) {
+    const response = await client
+        .from('groceries')
+        .update({ purchased: !item.purchased })
+        .match({ id: item.id });
+    if (response.error) {
+        console.error(response.error.message);
+    } else {
+        return response.data;
+    }
 }
 // function checkError({ data, error }) {
 //     return error ? console.error(error) : data;
