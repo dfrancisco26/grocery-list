@@ -1,4 +1,4 @@
-import { checkAuth, createListItem, renderItem, togglePurchased, fetchListItems, logout } from '../fetch-utils.js';
+import { checkAuth, createListItem, renderItem, togglePurchased, fetchListItems, logout, deleteRows } from '../fetch-utils.js';
 
 checkAuth();
 
@@ -6,6 +6,7 @@ const logoutButton = document.getElementById('logout');
 const form = document.getElementById('grocery-form');
 const listElem = document.getElementById('grocery-list');
 const error = document.getElementById('error');
+const delButton = document.getElementById('delete');
 
 logoutButton.addEventListener('click', () => {
     logout();
@@ -38,5 +39,10 @@ async function displayListItems() {
         }
     }
 }
+
+delButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    deleteRows();
+});
 
 displayListItems();

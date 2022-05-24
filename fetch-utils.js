@@ -79,6 +79,11 @@ export async function togglePurchased(item) {
         return response.data;
     }
 }
+
+export async function deleteRows() {
+    const data = await client.from('groceries').delete().match({ id:  });
+    return data;
+}
 // function checkError({ data, error }) {
 //     return error ? console.error(error) : data;
 // }
