@@ -81,7 +81,7 @@ export async function togglePurchased(item) {
 }
 
 export async function deleteRows() {
-    const data = await client.from('groceries').delete().match({ id:  });
+    const data = await client.from('groceries').delete().match({ user_id: getUser().id });
     return data;
 }
 // function checkError({ data, error }) {
